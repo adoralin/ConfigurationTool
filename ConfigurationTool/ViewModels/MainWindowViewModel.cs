@@ -339,9 +339,9 @@ namespace ConfigurationTool.ViewModels
         /// <returns></returns>
         static Status GetAdapterStatus(bool enabled, string connectionStatus)
         {
-            if (connectionStatus == "Connected") return Status.Connected;
-            if ((!enabled) && (connectionStatus == "Disconnected")) return Status.Disabled;
-            if (enabled && (connectionStatus == "Disconnected")) return Status.Disconnected;
+            if (!enabled) return Status.Disabled;
+            else if (connectionStatus == "Connected") return Status.Connected;
+            else if (connectionStatus == "Disconnected") return Status.Disconnected;           
             return Status.Disconnected;
         }
 
