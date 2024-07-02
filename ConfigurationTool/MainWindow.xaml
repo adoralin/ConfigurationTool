@@ -1,0 +1,35 @@
+﻿<Window x:Class="ConfigurationTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConfigurationTool"
+        mc:Ignorable="d"
+        Title="Network Adapter Configuration Tool" Background="AliceBlue" Height="350" Width="800">
+    <Grid Margin="10,10,0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="70*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="Please select adapter by name, and the IP configuration information of the selected network interface will be displayed."  Margin="20,0,24,0" Grid.RowSpan="2"/>
+        <Label Grid.Row ="0" Content="Adapter Name:" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Height="26" Width="100"/>
+        <ComboBox Grid.Row ="0" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" Width="167" IsEditable="true" IsReadOnly="True"
+      Text="Please select" HorizontalContentAlignment="Left"  ItemsSource="{Binding Path=AdapterNames, Mode=OneWay}" SelectedItem="{Binding Path=SelectedAdapter, Mode=TwoWay}" Height="22"/>
+        <DataGrid Grid.Row="2" Name="AdaptersOverview" ItemsSource ="{Binding Path = ConfigurationInformations}" IsReadOnly="True" Margin="20,12,30,10" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Adapter Name" Binding="{Binding AdapterName}" Width="150"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                <DataGridTextColumn Header="DNS Domain" Binding="{Binding DNSDomain}" Width="100"/>
+                <DataGridTextColumn Header="IP Address" Binding="{Binding IPAddress}" Width="100"/>
+                <DataGridTextColumn Header="Subnet Mask" Binding="{Binding Subnetmask}" Width="100"/>
+                <DataGridTextColumn Header="Adapter Type" Binding="{Binding AdapterType}" Width="100"/>
+                <DataGridTextColumn Header="MAC-Address" Binding="{Binding MACAddress}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Update Adapters" HorizontalAlignment="Left" Margin="335,10,0,0" VerticalAlignment="Top" Width="102" Command="{Binding UpdateCommand}"/>
+    </Grid>
+</Window>
