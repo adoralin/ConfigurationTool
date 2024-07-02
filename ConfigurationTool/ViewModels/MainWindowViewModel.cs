@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Management;
 
 namespace ConfigurationTool.ViewModels
@@ -15,7 +14,6 @@ namespace ConfigurationTool.ViewModels
         public ObservableCollection<IPConfigurationInformation> ConfigurationInformations
         { get; set; }
 
-        public NetworkInterface[] NetworkInterfaces { get; set; }
         /// <summary>
         /// RelayCommand to update the adapters and related information.
         /// </summary>
